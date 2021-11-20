@@ -10,10 +10,22 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField]
     private Rigidbody2D bulletRB;
 
+    [SerializeField]
+    private bool isGoingLeft;
+
     // Start is called before the first frame update
     void Start()
     {
-        bulletRB.velocity = new Vector2(-bulletSpeed, 0);
+        if(isGoingLeft)
+        {
+            bulletRB.velocity = new Vector2(-bulletSpeed, 0);
+            this.gameObject.transform.rotation = Quaternion.Euler(this.gameObject.transform.rotation.x, this.gameObject.transform.rotation.y, 180);
+        }
+        else if(!isGoingLeft)
+        {
+            bulletRB.velocity = new Vector2(bulletSpeed, 0);
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
