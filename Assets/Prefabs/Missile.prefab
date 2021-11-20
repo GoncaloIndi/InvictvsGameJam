@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xOffset: 0
   missileRB: {fileID: 4374267290146083659}
-  missileRadius: 4.02
+  missileRadius: 1.38
   missileSpeed: 5
   playerLayer:
     serializedVersion: 2

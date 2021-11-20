@@ -23,6 +23,7 @@ public class Missile : MonoBehaviour
     void Start()
     {
         xOffset = Random.Range(-.3f, .3f);
+        missileSpeed = Random.Range(4f, 5.5f);
         missileRB.velocity = new Vector2(xOffset * missileSpeed, -missileSpeed);
     }
 
@@ -31,12 +32,17 @@ public class Missile : MonoBehaviour
         Collider2D playerCol = Physics2D.OverlapCircle(this.gameObject.transform.position, missileRadius, playerLayer);
         if(playerCol != null)
         {
-            Debug.Log("kill player");
+            PlayerHealth.PlayerHP = 0;
         }
         else if(collision.gameObject.CompareTag("Missile"))
         {
             Debug.Log("xplosao do crl");
         }
         Destroy(this.gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(this.gameObject.transform.position, missileRadius);
     }
 }
