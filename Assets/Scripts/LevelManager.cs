@@ -6,35 +6,34 @@ public class LevelManager : MonoBehaviour
 {
     public CameraScript Camera;
 
+    public int EnemiesLeft;
+
     [SerializeField]
-    private int EnemiesLeft;
+    private GameObject firstEnemy;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         StopLevel();
+        firstEnemy.SetActive(true);
     }
 
     private void StopLevel()
     {
         Camera.AreEnemiesAlive = true;
-        StartCoroutine("CheckEnemies");
     }
 
-    private IEnumerator CheckEnemies()
+
+
+    public void CheckEnemies()
     {
-        while(true)
+        if (EnemiesLeft <= 0)
         {
-            if(EnemiesLeft <= 0)
-            {
-                ContinueLevel();
-            }
-            yield return new WaitForSeconds(.1f);
+            ContinueLevel();
         }
     }
 
     private void ContinueLevel()
     {
         Camera.AreEnemiesAlive = false;
-        StopCoroutine("CheckEnemies");
     }
 }
