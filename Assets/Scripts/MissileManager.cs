@@ -19,7 +19,7 @@ public class MissileManager : MonoBehaviour
     {
         while(true)
         {
-            spawnRNG = Random.Range(0, 4);
+            spawnRNG = Random.Range(0, 8);
             if(spawnRNG == 1)
             {
                 Instantiate(missilePrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
