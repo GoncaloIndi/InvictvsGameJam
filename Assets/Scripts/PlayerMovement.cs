@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float movementSpeed;
     [SerializeField]
     private float jumpForce;
+    private float movementX;
     private Rigidbody2D rb2d;
 
     private void Start()
@@ -17,17 +18,21 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        var movement = Input.GetAxisRaw("Horizontal");
-        transform.position += new Vector3(movement, 0) * movementSpeed * Time.deltaTime;
+        movementX = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump") && Mathf.Abs(rb2d.velocity.y) < 0.0001f)
         {
             Jump();
         }
 
-        if (!Mathf.Approximately(0, movement))
+        if (!Mathf.Approximately(0, movementX))
         {
-            transform.rotation = movement > 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+            transform.rotation = movementX > 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
         }
+    }
+
+    void FixedUpdate()
+    {
+        rb2d.velocity = new Vector2(movementX * movementSpeed, rb2d.velocity.y);
     }
 
     private void Jump()
