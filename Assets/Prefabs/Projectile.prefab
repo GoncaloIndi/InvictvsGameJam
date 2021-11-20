@@ -129,6 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 7
+  DeathTrigger: {fileID: 0}
+  rb: {fileID: 8349325557923071107}
 --- !u!70 &6103757277525119154
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
