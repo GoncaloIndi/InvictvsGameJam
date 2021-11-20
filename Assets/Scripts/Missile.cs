@@ -23,7 +23,7 @@ public class Missile : MonoBehaviour
     void Start()
     {
         xOffset = Random.Range(-.3f, .3f);
-        missileSpeed = Random.Range(4f, 5.5f);
+        missileSpeed = Random.Range(5f, 6f);
         missileRB.velocity = new Vector2(xOffset * missileSpeed, -missileSpeed);
     }
 
@@ -32,7 +32,7 @@ public class Missile : MonoBehaviour
         Collider2D playerCol = Physics2D.OverlapCircle(this.gameObject.transform.position, missileRadius, playerLayer);
         if(playerCol != null)
         {
-            PlayerHealth.PlayerHP = 0;
+            PlayerHealth.PlayerHP = -69;
         }
         else if(collision.gameObject.CompareTag("Missile"))
         {
