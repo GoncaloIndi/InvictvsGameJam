@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip JumpSound;
     public AudioClip LandSound;
     public AudioClip RunningSound;
+    public AudioClip BombExplosionSound;
 
     static AudioSource audioSource;
     void Start()
@@ -40,6 +41,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "Running":
 
+                break;
+            case "BombExplosion":
+                audioSource.PlayOneShot(BombExplosionSound);
                 break;
         }
     }

@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public bool CanMove;
 
     private SoundManager SoundManager;
+    
     public static bool IsFacingLeft = true;
     public bool DebugIsFacingLeft;
 
