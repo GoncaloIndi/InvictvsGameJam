@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Missile : MonoBehaviour
+{
+    [SerializeField]
+    private float xOffset;
+
+    [SerializeField]
+    private Rigidbody2D missileRB;
+
+    [SerializeField]
+    private float missileRadius;
+
+    [SerializeField]
+    private float missileSpeed;
+
+    [SerializeField]
+    private LayerMask playerLayer;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        xOffset = Random.Range(-.3f, .3f);
+        missileRB.velocity = new Vector2(xOffset * missileSpeed, -missileSpeed);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Collider2D playerCol = Physics2D.OverlapCircle(this.gameObject.transform.position, missileRadius, playerLayer);
+        if(playerCol != null)
+        {
+            Debug.Log("kill player");
+        }
+        else if(collision.gameObject.CompareTag("Missile"))
+        {
+            Debug.Log("xplosao do crl");
+        }
+        Destroy(this.gameObject);
+    }
+}
