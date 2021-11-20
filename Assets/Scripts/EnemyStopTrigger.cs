@@ -7,9 +7,16 @@ public class EnemyStopTrigger : MonoBehaviour
 {
     [SerializeField]
     private UnityEvent stopTrigger;
+    [SerializeField]
+    private bool hasDoneIt = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        stopTrigger.Invoke();
+        if(!hasDoneIt)
+        {
+            hasDoneIt = true;
+            stopTrigger.Invoke();
+        }
+        
     }
 }
