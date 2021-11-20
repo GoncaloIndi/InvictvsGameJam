@@ -5,10 +5,9 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     [SerializeField]
-    private Transform playerPosistion;
+    private Transform playerPosition;
 
-    [SerializeField]
-    private bool areEnemiesAlive;
+    public bool AreEnemiesAlive;
 
     [SerializeField]
     private Vector3 offset;
@@ -19,7 +18,7 @@ public class CameraScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!areEnemiesAlive)
+        if (!AreEnemiesAlive)
         {
             FollowPlayer();
         }
@@ -28,7 +27,7 @@ public class CameraScript : MonoBehaviour
 
     private void FollowPlayer()
     {
-        Vector3 newPosition = playerPosistion.position + offset;
+        Vector3 newPosition = playerPosition.position + offset;
         Vector3 smoothPosition = Vector3.Lerp(transform.position, newPosition, smoothness*Time.fixedDeltaTime);
         transform.position = new Vector3(smoothPosition.x, transform.position.y, transform.position.z);
     }

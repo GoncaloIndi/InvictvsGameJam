@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public CameraScript Camera;
+
+    [SerializeField]
+    private int EnemiesLeft;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        StopLevel();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void StopLevel()
     {
-        
+        Camera.AreEnemiesAlive = true;
+        StartCoroutine("CheckEnemies");
+    }
+
+    private IEnumerator CheckEnemies()
+    {
+        while(true)
+        {
+            if(EnemiesLeft <= 0)
+            {
+                ContinueLevel();
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+
+    private void ContinueLevel()
+    {
+        Camera.AreEnemiesAlive = false;
+        StopCoroutine("CheckEnemies");
     }
 }
