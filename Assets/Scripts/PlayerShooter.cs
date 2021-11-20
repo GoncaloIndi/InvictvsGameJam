@@ -15,6 +15,7 @@ public class PlayerShooter : MonoBehaviour
     private SoundManager SoundManager;
 
 
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -33,7 +34,6 @@ public class PlayerShooter : MonoBehaviour
 
     IEnumerator Fire()
     {
-
         canShoot = false;
         playerMovement.CanMove = false;
         animator.SetTrigger("Fire");
