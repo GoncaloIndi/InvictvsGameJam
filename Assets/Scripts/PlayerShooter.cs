@@ -12,11 +12,15 @@ public class PlayerShooter : MonoBehaviour
     private PlayerMovement playerMovement;
 
     public Animator animator;
+    private SoundManager SoundManager;
+
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+        SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+
     }
     private void Update()
     {
@@ -34,6 +38,8 @@ public class PlayerShooter : MonoBehaviour
         playerMovement.CanMove = false;
         animator.SetTrigger("Fire");
         Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
+        SoundManager.PlaySound("Fire");
+
 
         yield return new WaitForSeconds(ShootingCooldown);
         canShoot = true;
