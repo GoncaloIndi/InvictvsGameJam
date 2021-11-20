@@ -15,12 +15,16 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public bool CanMove;
 
+    private SoundManager SoundManager;
+    public static bool IsFacingLeft = true;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
 
         CanMove = true;
+        SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
     private void Update()
     {
@@ -42,7 +46,9 @@ public class PlayerMovement : MonoBehaviour
         if (!Mathf.Approximately(0, movementX))
         {
             transform.rotation = movementX > 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+            IsFacingLeft = !IsFacingLeft;
         }
+
     }
 
     void FixedUpdate()
@@ -60,5 +66,6 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        SoundManager.PlaySound("Jump");
     }
 }
