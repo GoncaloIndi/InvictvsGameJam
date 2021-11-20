@@ -23,6 +23,7 @@ public class Missile : MonoBehaviour
     void Start()
     {
         xOffset = Random.Range(-.3f, .3f);
+        missileSpeed = Random.Range(4f, 5.5f);
         missileRB.velocity = new Vector2(xOffset * missileSpeed, -missileSpeed);
     }
 
@@ -38,5 +39,10 @@ public class Missile : MonoBehaviour
             Debug.Log("xplosao do crl");
         }
         Destroy(this.gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(this.gameObject.transform.position, missileRadius);
     }
 }
