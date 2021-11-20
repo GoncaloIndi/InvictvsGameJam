@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private SoundManager SoundManager;
     public static bool IsFacingLeft = true;
+    public bool DebugIsFacingLeft;
 
     private void Start()
     {
@@ -28,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        DebugIsFacingLeft = PlayerMovement.IsFacingLeft;
+
         movementX = Input.GetAxisRaw("Horizontal");
 
         if (movementX == 0)
@@ -43,11 +46,24 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
-        if (!Mathf.Approximately(0, movementX))
+        Vector3 characterScale = transform.localScale;
+        if (movementX < 0)
         {
-            transform.rotation = movementX > 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
-            IsFacingLeft = !IsFacingLeft;
+            characterScale.x = -1;
+            IsFacingLeft = true;
         }
+        if (movementX > 0)
+        {
+            characterScale.x = 1;
+            IsFacingLeft = false;
+        }
+        transform.localScale = characterScale;
+
+        // if (!Mathf.Approximately(0, movementX))
+        // {
+        //     transform.rotation = movementX > 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+        //     IsFacingLeft = !IsFacingLeft;
+        // }
 
     }
 

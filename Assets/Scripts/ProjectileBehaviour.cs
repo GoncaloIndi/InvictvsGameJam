@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class ProjectileBehaviour : MonoBehaviour
 {
-    public float Speed;
+    public float Speed = 7;
 
     public EnemyCombat DeathTrigger;
 
     [SerializeField]
     private Rigidbody2D rb;
 
+
     void Start()
     {
-        rb.velocity = new Vector2(Speed, 0);
+        if (!PlayerMovement.IsFacingLeft)
+        {
+            rb.velocity = new Vector2(Speed, 0);
+        }
+        else
+        {
+            rb.velocity = new Vector2(-Speed, 0);
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("Colidiu");
-        if(other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             DeathTrigger = other.gameObject.GetComponent<EnemyCombat>();
             DeathTrigger.OnDeath();
@@ -29,6 +38,6 @@ public class ProjectileBehaviour : MonoBehaviour
         {
             Destroy(this.gameObject, 3f);
         }
-        
+
     }
 }
