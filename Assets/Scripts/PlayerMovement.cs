@@ -15,11 +15,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
-    void FixedUpdate()
-    {
-
-    }
-
     private void Update()
     {
         var movement = Input.GetAxisRaw("Horizontal");
