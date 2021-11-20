@@ -14,6 +14,9 @@ public class EnemyCombat : MonoBehaviour
     private GameObject nextTrigger;
 
     [SerializeField]
+    private GameObject gun;
+
+    [SerializeField]
     private GameObject BulletRightPrefab;
 
     [SerializeField]
@@ -24,10 +27,18 @@ public class EnemyCombat : MonoBehaviour
 
     public LevelManager EnemyCount;
 
+    [SerializeField]
+    private Animator enemyAnim;
+
     public void StartShooting()
     {
         betweenShotsDelay = .5f;
+        enemyAnim.SetFloat("hasStopped", 1f);
         StartCoroutine("Shoot");
+        if(!IsShootingLeft)
+        {
+            this.gameObject.transform.rotation = Quaternion.Euler(this.gameObject.transform.rotation.x, 180, this.gameObject.transform.rotation.z);
+        }
         
     }
 
@@ -37,6 +48,8 @@ public class EnemyCombat : MonoBehaviour
         EnemyCount.CheckEnemies();
         nextEnemy.SetActive(true);
         nextTrigger.SetActive(true);
+        StopCoroutine("Shoot");
+        enemyAnim.SetTrigger("Death");
     }
     
 
@@ -46,14 +59,14 @@ public class EnemyCombat : MonoBehaviour
         {
             yield return new WaitForSeconds(betweenShotsDelay);
             betweenShotsDelay = Random.Range(1.5f, 3f);
-
+            enemyAnim.SetTrigger("Shoot");
             if(IsShootingLeft)
             {
-                Instantiate(BulletLeftPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+                Instantiate(BulletLeftPrefab, gun.transform.position, this.gameObject.transform.rotation);
             }
             else
             {
-                Instantiate(BulletRightPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+                Instantiate(BulletRightPrefab, gun.transform.position, this.gameObject.transform.rotation);
             }
             
             
