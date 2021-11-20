@@ -10,6 +10,7 @@ public class DeathMenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public GameObject Flag;
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log("dsadas");
         Flag.SetActive(true);
     }
 

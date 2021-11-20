@@ -9,17 +9,24 @@ public class LevelManager : MonoBehaviour
     public int EnemiesLeft;
 
     [SerializeField]
-    private GameObject firstEnemy;
+    private GameObject borders;
+
+    [SerializeField]
+    private GameObject[] firstEnemy;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         StopLevel();
-        firstEnemy.SetActive(true);
+        for (int i = 0; i < firstEnemy.Length; i++)
+        {
+            firstEnemy[i].SetActive(true);
+        }
     }
 
     private void StopLevel()
     {
         Camera.AreEnemiesAlive = true;
+        borders.SetActive(true);
     }
 
 
@@ -35,5 +42,6 @@ public class LevelManager : MonoBehaviour
     private void ContinueLevel()
     {
         Camera.AreEnemiesAlive = false;
+        borders.SetActive(false);
     }
 }

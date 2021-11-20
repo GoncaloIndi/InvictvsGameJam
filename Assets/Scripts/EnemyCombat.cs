@@ -14,7 +14,13 @@ public class EnemyCombat : MonoBehaviour
     private GameObject nextTrigger;
 
     [SerializeField]
-    private GameObject BulletPrefab;
+    private GameObject BulletRightPrefab;
+
+    [SerializeField]
+    private GameObject BulletLeftPrefab;
+
+    [SerializeField]
+    private bool IsShootingLeft = true;
 
     public LevelManager EnemyCount;
 
@@ -40,8 +46,18 @@ public class EnemyCombat : MonoBehaviour
         {
             yield return new WaitForSeconds(betweenShotsDelay);
             betweenShotsDelay = Random.Range(1.5f, 3f);
-            Instantiate(BulletPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);          
+
+            if(IsShootingLeft)
+            {
+                Instantiate(BulletLeftPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            }
+            else
+            {
+                Instantiate(BulletRightPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            }
             
+            
+
         }
     }
     

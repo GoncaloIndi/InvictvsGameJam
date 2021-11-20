@@ -28,13 +28,13 @@ public class Missile : MonoBehaviour
         xOffset = Random.Range(-.3f, .3f);
         missileSpeed = Random.Range(5f, 6f);
         missileRB.velocity = new Vector2(xOffset * missileSpeed, -missileSpeed);
-        SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        //SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        SoundManager.PlaySound("BombExplosion");
+        //SoundManager.PlaySound("BombExplosion");
 
         Collider2D playerCol = Physics2D.OverlapCircle(this.gameObject.transform.position, missileRadius, playerLayer);
         if(playerCol != null)

@@ -58,6 +58,11 @@ public class PlayerHealth : MonoBehaviour
             damageScreens[1].SetActive(true);
             damageScreens[2].SetActive(true);
             //Ligar menu
+            
+        }
+        else if (PlayerHP <= -1)
+        {
+            damageScreens[3].SetActive(true);
         }
     }
 }
