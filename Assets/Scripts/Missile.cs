@@ -32,7 +32,7 @@ public class Missile : MonoBehaviour
         Collider2D playerCol = Physics2D.OverlapCircle(this.gameObject.transform.position, missileRadius, playerLayer);
         if(playerCol != null)
         {
-            Debug.Log("kill player");
+            PlayerHealth.PlayerHP = 0;
         }
         else if(collision.gameObject.CompareTag("Missile"))
         {
