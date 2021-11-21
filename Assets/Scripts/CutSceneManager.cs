@@ -11,13 +11,14 @@ public class CutSceneManager : MonoBehaviour
     public GameObject Dialogue3;
     public GameObject Dialogue4;
     public GameObject Dialogue5;
+    public PlayerMovement startScene;
 
     public float FirstCutsceneInterval1;
     public float FirstCutsceneInterval2;
 
     
 
-    public void StartFirstCutscene()
+    public void Start()
     {
         StartCoroutine("FirstCutscene");
     }
@@ -36,6 +37,7 @@ public class CutSceneManager : MonoBehaviour
 
         Dialogue2.SetActive(false);
         DialogueBar.SetActive(false);
+        startScene.StartWalkSequence();
 
         yield return null;
     }

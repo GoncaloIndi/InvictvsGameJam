@@ -13,10 +13,19 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumping = false;
 
+    //public GameObject NewPlayerPrefab;
+
     [SerializeField]
     private GameObject woman;
 
+    public PlayerShooter stopFire;
+
     private bool isOnScene = true;
+
+    public bool canJump = false;
+
+    public GameObject MusicSad;
+    public GameObject MusicEpic;
 
     public Animator animator;
     public bool CanMove;
@@ -35,14 +44,23 @@ public class PlayerMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         isOnScene = true;
         CanMove = true;
+        canJump = false;
+        MovementSpeed = 0;
+        stopFire = this.gameObject.GetComponent<PlayerShooter>();
         SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
-        StartCoroutine("StartWalk");
     }
+
+
+
     private void Update()
     {
         DebugIsFacingLeft = PlayerMovement.IsFacingLeft;
 
-        movementX = Input.GetAxisRaw("Horizontal");
+        if(MovementSpeed != 0)
+        {
+
+             movementX = Input.GetAxisRaw("Horizontal");
+        }
 
         
 
@@ -63,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsRunning", true);
         }
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb2d.velocity.y) < 0.0001f)
+        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb2d.velocity.y) < 0.0001f && canJump == true)
         {
             Jump();
         }
@@ -104,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isOnScene)
         {
-            rb2d.velocity = new Vector2(5, 0);
+            rb2d.velocity = new Vector2(5, rb2d.velocity.y);
             Debug.Log("daaaaa");
         }
         else if(!isOnEndThing)
@@ -151,6 +169,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void StartWalkSequence()
+    {
+        StartCoroutine("StartWalk");
+        MovementSpeed = 5;
+    }
+
     public IEnumerator StartWalk()
     {
         Vector3 characterScale = transform.localScale;
@@ -158,15 +182,20 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = characterScale;
 
         Vector3 playerPos = transform.position;
-        playerPos.y = -4.5f;
+        
         transform.position = playerPos;
         animator.SetBool("IsRunning", true);
         CanMove = false;
-        
+        yield return new WaitForSeconds(.1f);
+        playerPos.y = -4.5f;
         yield return new WaitForSeconds(1);
+        MusicSad.SetActive(false);
+        MusicEpic.SetActive(true);
         woman.SetActive(false);
         CanMove = true;
+        canJump = true;
         isOnScene = false;
+        stopFire.canShoot = true;
     }
 
     private void ResetSpeed()

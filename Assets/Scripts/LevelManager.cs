@@ -21,6 +21,9 @@ public class LevelManager : MonoBehaviour
     private GameObject win;
 
     [SerializeField]
+    private GameObject trigger;
+
+    [SerializeField]
     private bool isLastLevel = false;
 
     [SerializeField]
@@ -61,6 +64,7 @@ public class LevelManager : MonoBehaviour
                 runOne.SetActive(false);
                 runTwo.SetActive(false);
                 win.SetActive(true);
+                trigger.SetActive(true);
             }
             ContinueLevel();
         }

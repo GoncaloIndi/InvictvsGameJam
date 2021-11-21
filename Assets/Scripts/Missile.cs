@@ -45,6 +45,7 @@ public class Missile : MonoBehaviour
         if(playerCol != null)
         {
             PlayerHealth.PlayerHP = -69;
+
         }
         Destroy(this.gameObject);
         

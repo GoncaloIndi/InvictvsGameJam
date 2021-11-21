@@ -7,7 +7,7 @@ public class PlayerShooter : MonoBehaviour
     public ProjectileBehaviour ProjectilePrefab;
     public Transform LaunchOffset;
     public float ShootingCooldown;
-    private bool canShoot = true;
+    public bool canShoot = true;
     public GameObject PauseManager;
     private PlayerMovement playerMovement;
 
@@ -18,6 +18,7 @@ public class PlayerShooter : MonoBehaviour
 
     private void Start()
     {
+        canShoot = false;
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();

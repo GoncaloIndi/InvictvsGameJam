@@ -14,7 +14,12 @@ public class LevelEnd : MonoBehaviour
     private GameObject menu;
 
     [SerializeField]
+    private GameObject finalTrigger;
+
+    [SerializeField]
     private GameObject levels;
+
+    private bool hasTriggered = false;
 
     [SerializeField]
     private GameObject MusicEpic;
@@ -45,7 +50,27 @@ public class LevelEnd : MonoBehaviour
         levelsTwo.SetActive(false);
         houseDispawn.SetActive(false);      
         quoteSpawn.SetActive(true);
-        Cutscene.StartEndThing();
         menu.SetActive(false);
+        Cutscene.StartEndThing();
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(!hasTriggered)
+        {
+            finalTrigger.SetActive(true);
+            MusicEpic.SetActive(false);
+            quoteSpawn.SetActive(true);
+            MusicSad.SetActive(true);
+            levels.SetActive(false);
+            levelsTwo.SetActive(false);
+            houseDispawn.SetActive(false);
+            followPlayer.AreEnemiesAlive = false;
+            hasTriggered = true;
+        }
+
+       
+        
     }
 }

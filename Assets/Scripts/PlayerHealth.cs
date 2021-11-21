@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
 
     public PlayerMovement notMoveJustDie;
 
+    public PlayerShooter shoot;
+
     [SerializeField]
     private Animator anim;
 
@@ -71,6 +73,10 @@ public class PlayerHealth : MonoBehaviour
             anim.SetTrigger("Damage");
             notMoveJustDie.MovementSpeed = 0;
             damageScreens[3].SetActive(true);
+            shoot.canShoot = false;
+            notMoveJustDie.CanMove = false;
+            notMoveJustDie.canJump = false;
+
         }
         else if (PlayerHP <= -50)
         {
