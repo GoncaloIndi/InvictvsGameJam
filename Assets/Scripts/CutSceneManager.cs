@@ -25,12 +25,6 @@ public class CutSceneManager : MonoBehaviour
     private void Start()
     {
         SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
-    }
-
-
-
-    public void Start()
-    {
         StartCoroutine("FirstCutscene");
     }
 

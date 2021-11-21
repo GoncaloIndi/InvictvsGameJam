@@ -15,6 +15,7 @@ public class FinalCutscene : MonoBehaviour
     private GameObject frase3;
 
     public GameObject backToMenu;
+    public GameObject playerNew;
 
     [SerializeField]
     Animator animator;
@@ -41,6 +42,7 @@ public class FinalCutscene : MonoBehaviour
     {
         WinUi.SetActive(false);
         collision.gameObject.SetActive(false);
+        playerNew.SetActive(true);
         StartFinalCutscene();
     }
 
