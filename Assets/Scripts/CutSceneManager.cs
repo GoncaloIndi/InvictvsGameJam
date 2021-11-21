@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CutSceneManager : MonoBehaviour
@@ -15,11 +14,22 @@ public class CutSceneManager : MonoBehaviour
     public float FirstCutsceneInterval1;
     public float FirstCutsceneInterval2;
 
-    
+    public float SecondCutsceneInterval1;
+    public float SecondCutsceneInterval2;
+    public float SecondCutsceneInterval3;
+
+
+
+
 
     public void StartFirstCutscene()
     {
         StartCoroutine("FirstCutscene");
+    }
+
+    public void StartSecondCutscene()
+    {
+        StartCoroutine("SecondCutscene");
     }
 
     private IEnumerator FirstCutscene()
@@ -37,6 +47,28 @@ public class CutSceneManager : MonoBehaviour
         Dialogue2.SetActive(false);
         DialogueBar.SetActive(false);
 
+        yield return null;
+    }
+    private IEnumerator SecondCutscene()
+    {
+        DialogueBar.SetActive(true);
+        Dialogue3.SetActive(true);
+
+        yield return new WaitForSeconds(SecondCutsceneInterval1);
+
+        Dialogue3.SetActive(false);
+        Dialogue4.SetActive(true);
+
+        yield return new WaitForSeconds(SecondCutsceneInterval2);
+
+        Dialogue4.SetActive(false);
+        Dialogue5.SetActive(true);
+
+        yield return new WaitForSeconds(SecondCutsceneInterval3);
+
+        Dialogue5.SetActive(false);
+        DialogueBar.SetActive(false);
+    
         yield return null;
     }
 
