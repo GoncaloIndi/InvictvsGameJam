@@ -29,6 +29,6 @@ public class CameraScript : MonoBehaviour
     {
         Vector3 newPosition = playerPosition.position + offset;
         Vector3 smoothPosition = Vector3.Lerp(transform.position, newPosition, smoothness*Time.fixedDeltaTime);
-        transform.position = new Vector3(Mathf.Clamp(smoothPosition.x, -20, 92) , transform.position.y, transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(smoothPosition.x, -2, 92) , transform.position.y, transform.position.z);
     }
 }

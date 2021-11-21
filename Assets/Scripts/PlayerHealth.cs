@@ -82,6 +82,6 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("boo");
         damageScreens[3].SetActive(true);
-        Destroy(this.gameObject);
+        notMoveJustDie.CanMove = false;
     }
 }
