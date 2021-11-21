@@ -148,7 +148,7 @@ MonoBehaviour:
   xOffset: 0
   missileRB: {fileID: 4374267290146083659}
   explosionPrefab: {fileID: 4019208117127748768, guid: b0442bdd0bc255a4abbca46bece5009a, type: 3}
-  missileRadius: 1.38
+  missileRadius: 1.93
   missileSpeed: 5
   playerLayer:
     serializedVersion: 2

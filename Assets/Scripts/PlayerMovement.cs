@@ -97,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         isJumping = true;
+        MovementSpeed = 5;
         animator.SetTrigger("Jump");
         rb2d.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         SoundManager.PlaySound("Jump");
@@ -107,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
         if(Mathf.Abs(rb2d.velocity.y) < 0.00000001f)
         {
             animator.SetTrigger("Ground");
+            Invoke("ResetSpeed", .1f);
+            MovementSpeed = 2f;
             isJumping = false;
         }
     }
@@ -118,9 +121,14 @@ public class PlayerMovement : MonoBehaviour
         Vector3 characterScale = transform.localScale;
         characterScale.x = -0.6f;
         transform.localScale = characterScale;
-        MovementSpeed = 3.5f;
+        MovementSpeed = 3f;
         animator.SetBool("IsRunning", true);
         Destroy(this.gameObject.GetComponent<PlayerShooter>());
 
+    }
+
+    private void ResetSpeed()
+    {
+        MovementSpeed = 5;
     }
 }
