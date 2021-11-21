@@ -50,12 +50,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 characterScale = transform.localScale;
         if (movementX < 0)
         {
-            characterScale.x = -1;
+            characterScale.x = -0.6f;
             IsFacingLeft = true;
         }
         if (movementX > 0)
         {
-            characterScale.x = 1;
+            characterScale.x = 0.6f;
             IsFacingLeft = false;
         }
         transform.localScale = characterScale;

@@ -14,13 +14,22 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private GameObject[] firstEnemy;
 
+    [SerializeField]
+    private bool hasBeenTriggered = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StopLevel();
-        for (int i = 0; i < firstEnemy.Length; i++)
+        if(!hasBeenTriggered)
         {
-            firstEnemy[i].SetActive(true);
+            hasBeenTriggered = true;
+            StopLevel();
+            for (int i = 0; i < firstEnemy.Length; i++)
+            {
+                firstEnemy[i].SetActive(true);
+            }
+
         }
+        
     }
 
     private void StopLevel()

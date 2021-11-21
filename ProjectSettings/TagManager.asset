@@ -17,10 +17,10 @@ TagManager:
   - Triggers
   - Enemy
   - EnemyBullet
-  - 
-  - 
-  - 
-  - 
+  - PlayerBullet
+  - Ground
+  - DeadEnemy
+  - Platform
   - 
   - 
   - 

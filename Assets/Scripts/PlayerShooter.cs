@@ -25,7 +25,7 @@ public class PlayerShooter : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) & PauseManager.GetComponent<PauseManager>().GameIsPaused == false && canShoot)
+        if (Input.GetMouseButtonDown(0) & PauseManager.GetComponent<PauseManager>().GameIsPaused == false && canShoot)
         {
             StartCoroutine("Fire");
         }

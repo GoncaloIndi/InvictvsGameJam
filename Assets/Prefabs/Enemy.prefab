@@ -133,7 +133,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3256970842440588296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,8 +152,11 @@ MonoBehaviour:
   gun: {fileID: 8998557844205916754}
   BulletRightPrefab: {fileID: 0}
   BulletLeftPrefab: {fileID: 0}
+  rb: {fileID: 3256970842440588291}
   IsShootingLeft: 1
+  isLastEnemy: 0
   EnemyCount: {fileID: 0}
+  Stop: {fileID: 3256970842440588303}
   enemyAnim: {fileID: 4795188628133099409}
 --- !u!114 &3256970842440588303
 MonoBehaviour:

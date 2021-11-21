@@ -23,9 +23,19 @@ public class EnemyCombat : MonoBehaviour
     private GameObject BulletLeftPrefab;
 
     [SerializeField]
+    private Rigidbody2D rb;
+
+    [SerializeField]
     private bool IsShootingLeft = true;
 
+    [SerializeField]
+    private bool isLastEnemy = false;
+
     public LevelManager EnemyCount;
+
+    public EnemyMovement Stop;
+
+    private bool isAlive = true;
 
     [SerializeField]
     private Animator enemyAnim;
@@ -44,21 +54,29 @@ public class EnemyCombat : MonoBehaviour
 
     public void OnDeath()
     {
+        this.gameObject.layer = 12;
+        Stop.StopMoving();
         EnemyCount.EnemiesLeft--;
         EnemyCount.CheckEnemies();
-        nextEnemy.SetActive(true);
-        nextTrigger.SetActive(true);
-        StopCoroutine("Shoot");
+        
+        if(!isLastEnemy)
+        {
+            nextEnemy.SetActive(true);
+            nextTrigger.SetActive(true);
+        }
+
+        isAlive = false;
         enemyAnim.SetTrigger("Death");
+        Destroy(this);
     }
     
 
     private IEnumerator Shoot()
     {
-        while(true)
+        while(isAlive)
         {
             yield return new WaitForSeconds(betweenShotsDelay);
-            betweenShotsDelay = Random.Range(1.5f, 3f);
+            betweenShotsDelay = Random.Range(1.5f, 3.5f);
             enemyAnim.SetTrigger("Shoot");
             if(IsShootingLeft)
             {
