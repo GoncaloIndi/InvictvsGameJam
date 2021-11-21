@@ -439,6 +439,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4237058793144595411, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
   m_PrefabInstance: {fileID: 237476823}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &142050024 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1530009271569435558, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
+  m_PrefabInstance: {fileID: 237476823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142050023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a583e221776740459cb20b09f79ace1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &142050028 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6599548987790493821, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
+  m_PrefabInstance: {fileID: 237476823}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &142050029 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6230887753018663347, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
@@ -461,6 +477,8 @@ MonoBehaviour:
   - {fileID: 1398389403}
   - {fileID: 1403133626}
   - {fileID: 644235068}
+  notMoveJustDie: {fileID: 142050024}
+  anim: {fileID: 142050028}
 --- !u!1 &154848575
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,13 +669,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1530009271569435558, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 142050028}
+    - target: {fileID: 1530009271569435558, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
       propertyPath: jumpForce
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530009271569435558, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
+      propertyPath: MovementSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1530009271569435559, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
       propertyPath: PauseManager
       value: 
       objectReference: {fileID: 625122816}
+    - target: {fileID: 1530009271569435559, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
+      propertyPath: ShootingCooldown
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4237058793144595411, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
       propertyPath: m_Name
       value: Player
@@ -688,7 +718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6230887753018663347, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.6
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: 6230887753018663347, guid: 50027522c0ef1f9419e14611eb454a86, type: 3}
       propertyPath: m_LocalPosition.y

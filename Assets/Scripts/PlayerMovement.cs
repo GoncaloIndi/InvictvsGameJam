@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    [SerializeField]
-    private float movementSpeed;
+    public float MovementSpeed;
     [SerializeField]
     private float jumpForce;
     private float movementX;
@@ -72,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (CanMove)
         {
-            rb2d.velocity = new Vector2(movementX * movementSpeed, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(movementX * MovementSpeed, rb2d.velocity.y);
         }
         else
         {

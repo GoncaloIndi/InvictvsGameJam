@@ -39,11 +39,12 @@ public class PlayerShooter : MonoBehaviour
         animator.SetTrigger("Fire");
         Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
         SoundManager.PlaySound("Fire");
-
+        yield return new WaitForSeconds(.2f);
+        playerMovement.CanMove = true;
 
         yield return new WaitForSeconds(ShootingCooldown);
         canShoot = true;
-        playerMovement.CanMove = true;
+        
 
     }
 

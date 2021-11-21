@@ -46,8 +46,10 @@ public class Missile : MonoBehaviour
         {
             PlayerHealth.PlayerHP = -69;
         }
-        Instantiate(explosionPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
         Destroy(this.gameObject);
+        
+        Instantiate(explosionPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        
     }
 
     private void OnDrawGizmosSelected()

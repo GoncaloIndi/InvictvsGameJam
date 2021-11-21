@@ -22,6 +22,7 @@ public class ProjectileBehaviour : MonoBehaviour
         {
             rb.velocity = new Vector2(-Speed, 0);
         }
+        Destroy(this.gameObject, 2f);
 
     }
 
@@ -36,7 +37,7 @@ public class ProjectileBehaviour : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject, 3f);
+            Destroy(this.gameObject, 1f);
         }
 
     }
