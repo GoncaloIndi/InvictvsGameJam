@@ -22,7 +22,7 @@ public class ProjectileBehaviour : MonoBehaviour
         {
             rb.velocity = new Vector2(-Speed, 0);
         }
-        Destroy(this.gameObject, 2f);
+        Destroy(this.gameObject, 2.2f);
 
     }
 
