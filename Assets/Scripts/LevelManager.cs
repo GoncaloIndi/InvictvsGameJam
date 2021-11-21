@@ -12,6 +12,15 @@ public class LevelManager : MonoBehaviour
     private GameObject borders;
 
     [SerializeField]
+    private GameObject runOne;
+
+    [SerializeField]
+    private GameObject runTwo;
+
+    [SerializeField]
+    private GameObject win;
+
+    [SerializeField]
     private bool isLastLevel = false;
 
     [SerializeField]
@@ -47,6 +56,12 @@ public class LevelManager : MonoBehaviour
     {
         if (EnemiesLeft <= 0)
         {
+            if(isLastLevel)
+            {
+                runOne.SetActive(false);
+                runTwo.SetActive(false);
+                win.SetActive(true);
+            }
             ContinueLevel();
         }
     }

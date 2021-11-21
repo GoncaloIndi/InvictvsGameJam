@@ -13,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumping = false;
 
+    [SerializeField]
+    private GameObject woman;
+
+    private bool isOnScene = true;
+
     public Animator animator;
     public bool CanMove;
     [SerializeField]
@@ -28,15 +33,18 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
-
+        isOnScene = true;
         CanMove = true;
         SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        StartCoroutine("StartWalk");
     }
     private void Update()
     {
         DebugIsFacingLeft = PlayerMovement.IsFacingLeft;
 
         movementX = Input.GetAxisRaw("Horizontal");
+
+        
 
         if(movementX != 0)
         {
@@ -47,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             RunningSoundObject.SetActive(false);
         }
 
-        if (movementX == 0 && !isOnEndThing)
+        if (movementX == 0 && !isOnEndThing && !isOnScene)
         {
             animator.SetBool("IsRunning", false);
         }
@@ -94,6 +102,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb2d.velocity = new Vector2(movementX * MovementSpeed, rb2d.velocity.y);
         }
+        else if (isOnScene)
+        {
+            rb2d.velocity = new Vector2(5, 0);
+            Debug.Log("daaaaa");
+        }
         else if(!isOnEndThing)
         {
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
@@ -102,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb2d.velocity = new Vector2(-MovementSpeed, rb2d.velocity.y);
         }
+        
     }
 
     private void Jump()
@@ -131,10 +145,28 @@ public class PlayerMovement : MonoBehaviour
         Vector3 characterScale = transform.localScale;
         characterScale.x = -0.6f;
         transform.localScale = characterScale;
-        MovementSpeed = 3f;
+        MovementSpeed = 2f;
         animator.SetBool("IsRunning", true);
         Destroy(this.gameObject.GetComponent<PlayerShooter>());
 
+    }
+
+    public IEnumerator StartWalk()
+    {
+        Vector3 characterScale = transform.localScale;
+        characterScale.x = 0.6f;
+        transform.localScale = characterScale;
+
+        Vector3 playerPos = transform.position;
+        playerPos.y = -4.5f;
+        transform.position = playerPos;
+        animator.SetBool("IsRunning", true);
+        CanMove = false;
+        
+        yield return new WaitForSeconds(1);
+        woman.SetActive(false);
+        CanMove = true;
+        isOnScene = false;
     }
 
     private void ResetSpeed()
