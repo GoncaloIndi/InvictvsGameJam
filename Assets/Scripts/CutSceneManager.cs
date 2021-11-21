@@ -18,7 +18,13 @@ public class CutSceneManager : MonoBehaviour
     public float SecondCutsceneInterval2;
     public float SecondCutsceneInterval3;
 
+    private SoundManager SoundManager;
 
+
+    private void Start()
+    {
+        SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+    }
 
 
 
@@ -60,6 +66,8 @@ public class CutSceneManager : MonoBehaviour
         Dialogue4.SetActive(true);
 
         yield return new WaitForSeconds(SecondCutsceneInterval2);
+        
+        SoundManager.PlaySound("Baby");
 
         Dialogue4.SetActive(false);
         Dialogue5.SetActive(true);
@@ -68,7 +76,7 @@ public class CutSceneManager : MonoBehaviour
 
         Dialogue5.SetActive(false);
         DialogueBar.SetActive(false);
-    
+
         yield return null;
     }
 

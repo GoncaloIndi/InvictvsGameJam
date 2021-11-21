@@ -146,3 +146,4 @@ MonoBehaviour:
   LandSound: {fileID: 8300000, guid: 1e7881bd8eb90f841b4acdc50b1b4766, type: 3}
   RunningSound: {fileID: 8300000, guid: d9a53b603227e514185d72792822fb9c, type: 3}
   BombExplosionSound: {fileID: 8300000, guid: 6e6c33f40a2a8684f8b2a94d7fe437cd, type: 3}
+  Baby: {fileID: 8300000, guid: 1e3de7c893c966747a6ef134dc3598d7, type: 3}
