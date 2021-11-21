@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isOnEndThing = false;
 
     private SoundManager SoundManager;
+    public GameObject RunningSoundObject;
     
     public static bool IsFacingLeft = true;
     public bool DebugIsFacingLeft;
@@ -36,6 +37,15 @@ public class PlayerMovement : MonoBehaviour
         DebugIsFacingLeft = PlayerMovement.IsFacingLeft;
 
         movementX = Input.GetAxisRaw("Horizontal");
+
+        if(movementX != 0)
+        {
+            RunningSoundObject.SetActive(true);
+        }
+        else if(movementX == 0)
+        {
+            RunningSoundObject.SetActive(false);
+        }
 
         if (movementX == 0 && !isOnEndThing)
         {
