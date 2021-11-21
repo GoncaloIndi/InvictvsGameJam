@@ -11,6 +11,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip LandSound;
     public AudioClip RunningSound;
     public AudioClip BombExplosionSound;
+    public AudioClip Baby;
+
 
     static AudioSource audioSource;
     void Start()
@@ -44,6 +46,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "BombExplosion":
                 audioSource.PlayOneShot(BombExplosionSound);
+                break;
+            case "Baby":
+                audioSource.PlayOneShot(Baby);
                 break;
         }
     }
