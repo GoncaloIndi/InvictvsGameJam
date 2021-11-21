@@ -40,6 +40,13 @@ public class EnemyCombat : MonoBehaviour
     [SerializeField]
     private Animator enemyAnim;
 
+    private SoundManager SoundManager;
+
+    private void Start()
+    {
+        SoundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+    }
+
     public void StartShooting()
     {
         betweenShotsDelay = .5f;
@@ -78,7 +85,8 @@ public class EnemyCombat : MonoBehaviour
             yield return new WaitForSeconds(betweenShotsDelay);
             betweenShotsDelay = Random.Range(1.5f, 3.5f);
             enemyAnim.SetTrigger("Shoot");
-            if(IsShootingLeft)
+            SoundManager.PlaySound("Fire");
+            if (IsShootingLeft)
             {
                 Instantiate(BulletLeftPrefab, gun.transform.position, this.gameObject.transform.rotation);
             }

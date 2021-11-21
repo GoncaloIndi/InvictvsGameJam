@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour
     private GameObject borders;
 
     [SerializeField]
+    private bool isLastLevel = false;
+
+    [SerializeField]
     private GameObject[] firstEnemy;
 
     [SerializeField]
