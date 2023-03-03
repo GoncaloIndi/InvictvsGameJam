@@ -35,11 +35,12 @@ public class PlayerMovement : MonoBehaviour
     private SoundManager SoundManager;
     public GameObject RunningSoundObject;
     
-    public static bool IsFacingLeft = true;
+    public static bool IsFacingLeft;
     public bool DebugIsFacingLeft;
 
     private void Start()
     {
+        Cursor.visible = false;
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         isOnScene = true;
